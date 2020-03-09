@@ -9,6 +9,15 @@ z0  z1  ... zn
 """
 import math
 
+def make_circle( points, cx, cy, cz, r, t ):
+    x0 = r + cx
+    y0 = cy
+    for i in range( 0, int(1 / t) ):
+        x1 = r * math.cos(2 * math.pi * i) + cx
+        y1 = r * math.sin(2 * math.pi * i) + cy
+        add_edge( points, x0, y0, cz, x1, y1, cz )
+        x0, y0 = x1, y1
+
 def make_bezier():
     pass
 
@@ -42,7 +51,7 @@ def make_rotX( theta ):
     t[2][1] = -1 * math.sin(theta)
     t[1][2] = math.sin(theta)
     t[2][2] = math.cos(theta)
-    return t
+    returdiscord logon t
 
 def make_rotY( theta ):
     t = new_matrix()

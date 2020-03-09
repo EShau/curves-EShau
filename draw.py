@@ -3,10 +3,13 @@ from matrix import *
 
 
 def add_circle( points, cx, cy, cz, r, step ):
-    pass
+    make_circle( points, cx, cy, cz, r, step )
 
-def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
-    pass
+def add_hermite( points, x0, y0, x1, y1, rx0, ry0, rx1, ry1, step):
+    make_hermite( points, x0, y0, x1, y1, rx0, ry0, rx1, ry1, step)
+
+def add_bezier( points, x0, y0, x1, y1, x2, y2, x3, y3, step):
+    make_bezier( points, x0, y0, x1, y1, x2, y2, x3, y3, step)
 
 
 def draw_lines( matrix, screen, color ):

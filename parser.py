@@ -54,14 +54,26 @@ def parse_file( fname, edges, transform, screen, color ):
             args = lines[c].strip().split(' ')
 
         if line == 'circle':
-            add_circle( edges.
+            add_circle( edges,
                         float(args[0]), float(args[1]), float(args[0]),
-                        float(args[0]), 0.01)
+                        float(args[0]),
+                        0.01 )
 
         elif line == 'hermite':
-            add_curve( edges, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type )
+            add_hermite(    edges,
+                            float(args[0]), float(args[1]),
+                            float(args[2]), float(args[3]),
+                            float(args[4]), float(args[5]),
+                            float(args[6]), float(args[7]),
+                            0.01 )
 
         elif line == 'bezier':
+            add_bezier(    edges,
+                            float(args[0]), float(args[1]),
+                            float(args[2]), float(args[3]),
+                            float(args[4]), float(args[5]),
+                            float(args[6]), float(args[7]),
+                            0.01 )
 
         elif line == 'line':
             #print 'LINE\t' + str(args)
