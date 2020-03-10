@@ -9,23 +9,33 @@ z0  z1  ... zn
 """
 import math
 
-def make_circle( points, cx, cy, cz, r, t ):
-    x0 = r + cx
-    y0 = cy
-    for i in range( 0, int(1 / t) ):
-        x1 = r * math.cos(2 * math.pi * i) + cx
-        y1 = r * math.sin(2 * math.pi * i) + cy
-        add_edge( points, x0, y0, cz, x1, y1, cz )
-        x0, y0 = x1, y1
+def generate_hermite_curve_coefs( p0, p1, r0, r1 ):
+    H_inverse = new_matrix()
+    G = new_matrix( 4, 1 )
+    H_inverse[0][0] = 2
+    H_inverse[0][1] = -3
+    H_inverse[0][3] = 1
+    H_inverse[1][0] = -2
+    H_inverse[1][1] = 3
+    H_inverse[2][0] = 1
+    H_inverse[2][1] = -2
+    H_inverse[2][2] = 1
+    H_inverse[3][0] = 1
+    H_inverse[3][1] = -1
+    G[0][0] = p0
+    G[0][1] = p1
+    G[0][2] = r0
+    G[0][3] = r1
+    matrix_mult( H_inverse, G )
+    return G
 
-def make_bezier():
-    pass
-
-def make_hermite():
-    pass
-
-def generate_curve_coefs( p0, p1, p2, p3, t ):
-    pass
+def generate_bezier_curve_coefs( p0, p1, p2, p3 ):
+    t = new_matrix( 4, 1 )
+    t[0][0] = -1 * p0 + 3 * p1 - 3 * p2 + p3
+    t[0][1] = 3 * p0 - 6 * p1 + 3 * p2
+    t[0][2] = - 3 * p0 + 3 * p1
+    t[0][3] = p0
+    return t
 
 
 def make_translate( x, y, z ):
@@ -51,7 +61,7 @@ def make_rotX( theta ):
     t[2][1] = -1 * math.sin(theta)
     t[1][2] = math.sin(theta)
     t[2][2] = math.cos(theta)
-    returdiscord logon t
+    return t
 
 def make_rotY( theta ):
     t = new_matrix()
