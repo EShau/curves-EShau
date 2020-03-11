@@ -6,6 +6,7 @@ import math
 
 screen = new_screen()
 color = [ 0, 255, 0 ]
+# color = [ 255, 255, 255 ]
 edges = []
 transform = new_matrix()
 
